@@ -10,8 +10,7 @@ import trik.testsys.webclient.repository.user.StudentRepository
 import trik.testsys.webclient.service.entity.impl.SolutionVerdictService
 import trik.testsys.webclient.service.entity.user.WebUserService
 import trik.testsys.webclient.service.token.access.AccessTokenGenerator
-import kotlin.math.absoluteValue
-import kotlin.random.Random
+import java.util.*
 
 /**
  * @author Roman Shishkin
@@ -33,11 +32,10 @@ class StudentService(
     fun generate(count: Long, group: Group): List<Student> {
         val students = mutableListOf<Student>()
 
-        val randomSeed = Random(42)
         for (i in 1..count) {
             val number = i
             val accessToken = accessTokenGenerator.generate(number.toString() + group.regToken)
-            val name = "st${group.id}$number${randomSeed.nextInt().toLong().absoluteValue}"
+            val name = "st-${group.id}-${UUID.randomUUID().toString().substring(4, 18)}-$number"
 
             val student = Student(name, accessToken)
             student.group = group
