@@ -3,7 +3,7 @@ MAINTAINER Roman Shishkin <romashkin.2001@yandex.ru>
 
 #Setting directories args
 ARG APP_DIR=web-app
-ARG VERSION=2.4.4-snapshot
+ARG VERSION=2.4.5-snapshot
 
 #Copying application
 WORKDIR /$APP_DIR
