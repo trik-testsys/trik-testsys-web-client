@@ -60,13 +60,20 @@ runs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
+    - name: Get latest release tag
+      shell: bash
+      run: |
+        LATEST_TAG=$(git tag -l 'v*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+        echo "LATEST_TAG=LATEST_TAG" >> $GITHUB_ENV
+        echo -e "\n\e[32mLATEST_TAG=$LATEST_TAG\e[0m"
+
     - name: Build and Tag Docker Image
       shell: bash
       run: |
         docker build -t "$IMAGE_NAME_DH:${{ env.VERSION }}" .
         docker build -t "$IMAGE_NAME_GH:${{ env.VERSION }}" .
         
-        if [[ "${{ env.BRANCH_NAME }}" == "master" ]]; then
+        if [[ "${{ github.event.release.tag_name }}" == "${{ env.LATEST_TAG }}" ]]; then
           docker build -t "$IMAGE_NAME_DH:latest" .
           docker build -t "$IMAGE_NAME_GH:latest" .
         fi
