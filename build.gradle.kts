@@ -50,7 +50,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
     implementation("org.thymeleaf.extras:thymeleaf-extras-java8time")
+
+    implementation("org.springframework.session:spring-session-jdbc")
 
     implementation("org.zeroturnaround:zt-zip:1.17")
     implementation("org.yaml:snakeyaml:1.33")

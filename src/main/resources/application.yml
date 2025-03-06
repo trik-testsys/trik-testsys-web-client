@@ -29,6 +29,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  session:
+    store-type: jdbc
+    timeout: 3h
+    jdbc:
+      initialize-schema: always
 logging:
   file:
     name: "${PWD}/logs/server.log"                              # Path to log file
