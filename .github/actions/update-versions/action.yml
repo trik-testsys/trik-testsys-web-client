@@ -34,7 +34,7 @@ runs:
       run: |
         git checkout ${{ env.BRANCH_NAME }}
         git add ./src
-        git commit -m "release: Update version to ${{ env.version }}"
+        git commit -m "release: Update version to ${{ env.VERSION }}"
         git push https://x-access-token:${{ inputs.github-token }}@github.com/${{ github.repository }}.git ${{ env.BRANCH_NAME }}
 
     - name: Log change files
